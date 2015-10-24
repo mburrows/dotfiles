@@ -1,0 +1,79 @@
+source '~/.mutt/mutt-colors-solarized-dark-256.muttrc'
+
+# Mail settings
+set spoolfile='imap://mburrows@ukcas.uk.bats.com:143/INBOX'
+set folder='imap://mburrows@ukcas.uk.bats.com:143/'
+set realname='Matt Burrows'
+set from='mburrows@bats.com'
+set hostname=bats.com
+set postponed='=Drafts'
+set record='=Sent'
+set query_command='~/.mutt/ldap.sh '%s''
+set header_cache='~/.mutt/cache'
+set signature='~/.mutt/signature'
+
+#source "gpg -d ~/.mutt/passwords.gpg |"
+
+set mail_check=29
+set timeout=30
+
+# Sorting
+#set sort=date
+set sort=threads
+set sort_aux=last-date-received
+
+# General settings
+auto_view text/html
+auto_view text/calendar
+set pager_index_lines=15
+set move=no
+set pager_stop=yes
+set ispell="/usr/bin/aspell -c --mode=email --lang=en_GB"
+set confirmappend=no
+set delete=yes
+set forward_format='FW: %s'
+
+# key bindings
+bind index,pager  I   imap-fetch-mail
+
+bind index     gg     first-entry
+bind index     G      last-entry
+bind index     R      group-reply
+bind index    <space> collapse-thread
+
+bind pager    \cy     previous-line
+bind pager    \ce     next-line
+bind pager     gg     top
+bind pager     G      bottom
+bind pager     R      group-reply
+
+# macros
+macro pager   \cw  <pipe-entry>'w3m'<enter>                               'Open item with w3m' 
+macro pager   \cx  <pipe-entry>'lynx -stdin -dump -listonly | w3m'<enter> 'Open links with w3m' 
+macro index    D   ';s=Trash'<enter>                                      'Move tagged to trash'
+macro index    A   ';s=Archive'<enter>                                    'Move tagged to archive'
+macro index    M   'T ~N<enter>;N ~T<enter>'                            'Mark all read'
+macro index   \co  'T ~d >1w ! ~F<enter>;s=Archive<enter>'                'Mark old messages and archive them'
+macro index    a   "<limit>all\n"                                         'show all messages (undo limit)'
+macro index    ^   "<limit>~F\n"                                          'show important messages'
+macro generic <f2> ":set query_command='~/.mutt/google.sh '%s'"<enter>    'Google'
+macro generic <f3> ":set query_command='~/.mutt/ldap.sh '%s'"<enter>      'LDAP'
+
+# trash rather than delete unless trash folder
+# won't work for patterns/tags, use ;s instead
+folder-hook . 'macro index,pager d '<save-message>=Trash<enter>''
+folder-hook =Trash 'macro index,pager d <delete-message>' 
+
+ignore *
+unignore From:
+unignore To:
+unignore Subject:
+unignore Date:
+unignore CC:
+hdr_order Subject: From: Date: To: CC:
+
+alternative_order text/calendar
+
+alias dave Dave Howson <dhowson@bats.com>
+alias td TradeDeskEU_Internal <TradeDeskEU_Internal@bats.com>
+alias l2 Level 2 Support <l2supporteu@lccbugzilla.bats.com>
