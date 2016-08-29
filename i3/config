@@ -243,6 +243,9 @@ exec compton -f --vsync opengl
 # Use Network Manager applet so that we can connect to wireless networks
 exec --no-startup-id nm-applet
 
+# Start dropbox daemon
+exec ~/.dropbox-dist/dropboxd
+
 # Startup my standard apps
 exec google-chrome
 exec emacs
