@@ -1,4 +1,4 @@
-source '~/.mutt/mutt-colors-solarized-dark-256.muttrc'
+source '~/.mutt/dracula-theme.muttrc'
 
 # Mail settings
 set spoolfile='imap://mburrows@ukcas.uk.bats.com:143/INBOX'
@@ -48,12 +48,12 @@ bind pager     G      bottom
 bind pager     R      group-reply
 
 # macros
-macro pager   \cw  <pipe-entry>'w3m'<enter>                               'Open item with w3m' 
-macro pager   \cx  <pipe-entry>'lynx -stdin -dump -listonly | w3m'<enter> 'Open links with w3m' 
+macro pager   \cw  <pipe-entry>'w3m'<enter>                               'Open item with w3m'
+macro pager   \cx  <pipe-entry>'lynx -stdin -dump -listonly | w3m'<enter> 'Open links with w3m'
 macro index    D   ';s=Trash'<enter>                                      'Move tagged to trash'
 macro index    A   ';s=Archive'<enter>                                    'Move tagged to archive'
-macro index    M   'T ~N<enter>;N ~T<enter>'                            'Mark all read'
-macro index   \co  'T ~d >1w ! ~F<enter>;s=Archive<enter>'                'Mark old messages and archive them'
+macro index    M   ';<clear-flag>N<untag-pattern>.<enter>'                'Mark tagged as read'
+macro index   \co  'T ~d >2d ! ~F<enter>;s=Archive<enter>'                'Mark old messages and archive them'
 macro index    a   "<limit>all\n"                                         'show all messages (undo limit)'
 macro index    ^   "<limit>~F\n"                                          'show important messages'
 macro generic <f2> ":set query_command='~/.mutt/google.sh '%s'"<enter>    'Google'
@@ -62,7 +62,7 @@ macro generic <f3> ":set query_command='~/.mutt/ldap.sh '%s'"<enter>      'LDAP'
 # trash rather than delete unless trash folder
 # won't work for patterns/tags, use ;s instead
 folder-hook . 'macro index,pager d '<save-message>=Trash<enter>''
-folder-hook =Trash 'macro index,pager d <delete-message>' 
+folder-hook =Trash 'macro index,pager d <delete-message>'
 
 ignore *
 unignore From:
@@ -74,6 +74,15 @@ hdr_order Subject: From: Date: To: CC:
 
 alternative_order text/calendar
 
+set editor=vim
+
 alias dave Dave Howson <dhowson@bats.com>
 alias td TradeDeskEU_Internal <TradeDeskEU_Internal@bats.com>
-alias l2 Level 2 Support <l2supporteu@lccbugzilla.bats.com>
+alias l2 jiral2eu <jiraLevelTwoEurope@bats.com>
+alias en Evernote <maburrow.391bb@m.evernote.com>
+alias me Me <mburrows@bats.com>
+alias dan \"Watkins, Daniel\" <dwatkins@bats.com>
+alias glyn Glyn Davies <gdavies@bats.com>
+alias deveu SoftwareEngineeringEU <SoftwareEngineeringEU@bats.com>
+alias steve \"Pearson, Steve\" <spearson@cboe.com>
+alias peter \"Hamlen, Peter\" <phamlen@cboe.com>
