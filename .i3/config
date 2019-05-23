@@ -1,0 +1,312 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+set $term termite
+set $hyper Mod1+Mod4+Shift+Control
+
+# Nord theme colors
+set $nord0   #2E3440
+set $nord1   #3B4252
+set $nord2   #434C5E
+set $nord3   #4C566A
+set $nord4   #D8DEE9
+set $nord5   #E5E9F0
+set $nord6   #ECEFF4
+set $nord7   #8FBCBB
+set $nord8   #88C0D0
+set $nord9   #81A1C1
+set $nord10  #5E81AC
+set $nord11  #BF616A
+set $nord12  #D08770
+set $nord13  #EBCB8B
+set $nord14  #A3BE8C
+set $nord15  #B48EAD
+
+font pango:System San Francisco Display 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec $term
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start program launcher
+bindsym $mod+d exec rofi -show run
+
+# ssh menu
+bindsym $mod+p exec rofi -show ssh
+
+# change focus (colemak style)
+bindsym $mod+h focus left
+bindsym $mod+n focus down
+bindsym $mod+e focus up
+bindsym $mod+i focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window (colemak style)
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+n move down
+bindsym $mod+Shift+e move up
+bindsym $mod+Shift+i move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+slash split h
+
+# split in vertical orientation
+bindsym $mod+minus split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# toggle status bar
+bindsym $mod+b bar mode toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+q layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+u focus parent
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+Control+1 workspace 11
+bindsym $mod+Control+2 workspace 12
+bindsym $mod+Control+3 workspace 13
+bindsym $mod+Control+4 workspace 14
+bindsym $mod+Control+5 workspace 15
+bindsym $mod+Control+6 workspace 16
+bindsym $mod+Control+7 workspace 17
+bindsym $mod+Control+8 workspace 18
+bindsym $mod+Control+9 workspace 19
+bindsym $mod+Control+0 workspace 20
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Control+Shift+1 move container to workspace 11
+bindsym $mod+Control+Shift+2 move container to workspace 12
+bindsym $mod+Control+Shift+3 move container to workspace 13
+bindsym $mod+Control+Shift+4 move container to workspace 14
+bindsym $mod+Control+Shift+5 move container to workspace 15
+bindsym $mod+Control+Shift+6 move container to workspace 16
+bindsym $mod+Control+Shift+7 move container to workspace 17
+bindsym $mod+Control+Shift+8 move container to workspace 18
+bindsym $mod+Control+Shift+9 move container to workspace 19
+bindsym $mod+Control+Shift+0 move container to workspace 20
+
+# workspace output assignments (as reported by xrandr)
+set $monitorLeft   "DP-0"
+set $monitorMiddle "DP-2"
+set $monitorRight  "DP-4"
+
+workspace 1 output $monitorLeft
+workspace 2 output $monitorMiddle
+workspace 3 output $monitorRight
+workspace 4 output $monitorLeft
+workspace 5 output $monitorMiddle
+workspace 6 output $monitorRight
+workspace 7 output $monitorLeft
+workspace 8 output $monitorMiddle
+workspace 9 output $monitorRight
+
+workspace 11 output $monitorLeft
+workspace 12 output $monitorMiddle
+workspace 13 output $monitorRight
+workspace 14 output $monitorLeft
+workspace 15 output $monitorMiddle
+workspace 16 output $monitorRight
+workspace 17 output $monitorLeft
+workspace 18 output $monitorMiddle
+workspace 19 output $monitorRight
+
+assign [class="Emacs"] 2
+
+for_window [class="Teensy"] floating enable
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym n resize grow height 10 px or 10 ppt
+        bindsym e resize shrink height 10 px or 10 ppt
+        bindsym i resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+set $barFont "pango:System San Francisco Display 10"
+
+bar {
+	output $monitorMiddle
+        status_command i3status
+	font $barFont
+	position top
+	tray_output $monitorMiddle
+	colors {
+               background $nord0
+               statusline $nord8
+#                                 border background
+               focused_workspace  $nord3 $nord8
+               active_workspace   $nord3 $nord8
+               inactive_workspace $nord8 $nord3
+               urgent_workspace   $nord3 $nord15
+        }
+}
+
+bar {
+	output $monitorLeft
+	status_command exec /home/mburrows/scripts/gsmstatus.sh	
+	font $barFont
+	position top
+	tray_output none
+	colors {
+               background $nord0
+               statusline $nord8
+#                                 border background
+               focused_workspace  $nord3 $nord8
+               active_workspace   $nord3 $nord8
+               inactive_workspace $nord8 $nord3
+               urgent_workspace   $nord3 $nord15
+        }
+}
+
+bar {
+	output $monitorRight
+        status_command i3status -c /home/mburrows/.i3status.timezones.conf
+	font $barFont
+	position top
+	tray_output none
+	colors {                                                
+               background $nord0
+               statusline $nord8
+#                                 border background
+               focused_workspace  $nord3 $nord8
+               active_workspace   $nord3 $nord8
+               inactive_workspace $nord8 $nord3
+               urgent_workspace   $nord3 $nord15 
+        }
+}
+
+# Easy workspace switching
+# workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth
+
+# Mark a window
+bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
+bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+
+# Scratchpad windows
+bindsym $mod+Shift+o move scratchpad
+bindsym $mod+o scratchpad show
+
+# Rename workspace binding (mirroring the tmux binding)
+bindsym $mod+comma exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+
+# Move the current workspace to the next output
+bindsym $mod+z move workspace to output left
+bindsym $mod+x move workspace to output right
+
+# Bulk workspace switching (switches workspaces on all 3 monitors)
+bindsym $hyper+1 workspace 1,  workspace 2,  workspace 3
+bindsym $hyper+2 workspace 4,  workspace 5,  workspace 6
+bindsym $hyper+3 workspace 7,  workspace 8,  workspace 9
+bindsym $hyper+4 workspace 11, workspace 12, workspace 13
+bindsym $hyper+5 workspace 14, workspace 15, workspace 16
+bindsym $hyper+6 workspace 17, workspace 18, workspace 19
+
+# Application shortcuts
+bindsym $hyper+c exec google-chrome
+bindsym $hyper+d exec $term -e "vim /home/mburrows/.i3/config"
+bindsym $hyper+e [class="Emacs"] focus
+bindsym $hyper+g [class="Google-chrome"] focus
+bindsym $hyper+h exec xterm -e "ssh -qt pcomblin2 '/home/mburrows/scripts/gsmstatus -c sea seb set scc pea peb pet pcc && read'"
+bindsym $hyper+s exec shutter
+bindsym $hyper+v exec $term -e alsamixer
+bindsym $hyper+x exec xterm -e "ssh -X -t pcomblin2 TERM=xterm-256color mutt"
+
+bindsym $mod+t   exec $term -e "ssh -X pcomblin3.etc.cboe.net"
+
+# Gaps (requires i3-gaps build)
+for_window [class="^.*"] border pixel 0
+gaps inner 5
+gaps outer 0
+smart_gaps on
+
+# Startup standard apps
+exec_always feh --bg-scale /home/mburrows/Pictures/hpehPUv-dark-blue-background-wallpaper.jpg
+exec compton -f --config ~/.compton.conf --vsync opengl
+exec google-chrome
+exec xscreensaver
+exec klipper
+#exec xsetroot -solid black
+
+

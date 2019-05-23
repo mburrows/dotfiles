@@ -1,0 +1,16 @@
+rofi.show-icons:            false
+rofi.modi:                  drun,run,window,ssh
+rofi.lines:                 10
+rofi.line-padding:          10
+rofi.matching:              fuzzy
+rofi.bw:                    0
+rofi.padding:               0
+rofi.separator-style:       none
+rofi.hide-scrollbar:        true
+rofi.line-margin:           0
+rofi.font:                  System San Francisco Display 10
+rofi.theme:                 /home/mburrows/.config/rofi/custom-nord.rasi
+rofi.terminal:              /usr/bin/termite
+rofi.ssh-command:           {terminal} -e "{ssh-client} {host}"
+rofi.run-shell-command:     {terminal} -e "{cmd}"
+

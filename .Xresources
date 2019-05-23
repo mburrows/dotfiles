@@ -1,9 +1,49 @@
-URxvt.font: xft:Inconsolata:size=13
+! Dracula Xresources palette
+!*.foreground: #F8F8F2
+!*.background: #282A36
+!*.color0:     #000000
+!*.color8:     #4D4D4D
+!*.color1:     #FF5555
+!*.color9:     #FF6E67
+!*.color2:     #50FA7B
+!*.color10:    #5AF78E
+!*.color3:     #F1FA8C
+!*.color11:    #F4F99D
+!*.color4:     #BD93F9
+!*.color12:    #CAA9FA
+!*.color5:     #FF79C6
+!*.color13:    #FF92D0
+!*.color6:     #8BE9FD
+!*.color14:    #9AEDFE
+!*.color7:     #BFBFBF
+!*.color15:    #E6E6E6
+
+#include "/home/mburrows/src/nord-xresources/src/nord"
+
+XTerm*faceName:         DejaVuSansMono Nerd Font Mono
+XTerm*faceSize:         9
+XTerm*saveLines:        9999
+XTerm*scrollBar:        false
+XTerm*scrollKey:        true
+XTerm*scrollTtyOutput:  false
+XTerm*visualBell:       true
+XTerm*utf8:             1
+XTerm*cjkWidth:         0
+
+!Emacs.font:  Inconsolata:size=16
+Emacs.font:  Inconsolata:size=16
+Emacs*fontBackend: xft
+
+URxvt.font: xft:DroidSansMono Nerd Font Mono:size=9
 URxvt.scrollBar: false
 URxvt*saveLines: 9999
-
+URxvt.visualBell: true
+!URxvt*background: #FBF8EF
 URxvt.perl-ext-common: default,selection-to-clipboard,matcher
-
 URxvt.matcher.button: 1
 URxvt.url-launcher: /usr/bin/google-chrome
-URxvt.colorUL: #7780a1
+!URxvt.colorUL: #7780a1
+
+rofi.terminal: urxvt
+rofi.ssh-command: {terminal} -e {ssh-client} -X {host}
+
