@@ -302,7 +302,7 @@ gaps outer 0
 smart_gaps on
 
 # Startup standard apps
-exec_always feh --bg-scale /home/mburrows/Pictures/hpehPUv-dark-blue-background-wallpaper.jpg
+exec_always feh --bg-scale /home/mburrows/dotfiles/nord_wallpaper.png
 exec compton -f --config ~/.compton.conf --vsync opengl
 exec google-chrome
 exec xscreensaver
