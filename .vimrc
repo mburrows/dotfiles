@@ -108,7 +108,7 @@ let g:LoupeHighlightGroup = 'Error'
 let g:markdown_fold_style = 'nested'
 
 " Perty status line
-let g:airline_theme = 'base16_tomorrow'
+let g:airline_theme = 'nord'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_powerline_fonts = 1
 
