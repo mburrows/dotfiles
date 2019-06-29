@@ -1,0 +1,20 @@
+#! /bin/bash
+
+bspc monitor -d 一 二 三 四 五 六 七 八 九 十
+
+bspc config border_width          2
+bspc config window_gap            12
+bspc config focus_follows_pointer true
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   false
+bspc config gapless_monocle      false
+
+# Load local rules
+$HOME/.config/bspwm/rules-${HOSTNAME}.sh
+
+# Load local autostarts
+$HOME/.config/bspwm/autostart-${HOSTNAME}.sh
+
+# Load local wallpaper
+$HOME/.config/bspwm/wallpaper.sh &

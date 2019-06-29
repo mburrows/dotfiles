@@ -67,6 +67,7 @@ font-0 = "Noto Sans:size=11;1"
 font-1 = "NotoSans Nerd Font:style=ExtraBold,Regular;size=13;2"
 font-2 = "Source Code Pro:style=Bold;size=13;2"
 font-3 = "Noto Sans JP:style=Bold;size=13;2"
+font-4 = "Noto Sans CJK JP Bold:style=Bold,Regular;size=13;2"
 
 modules-left = bspwm 
 modules-center = xwindow 
@@ -108,9 +109,11 @@ interval = 25
 
 mount-0 = /
 format-mounted-prefix = " "
+format-mounted-underline = #2BABD9
 label-mounted = %{A1:thunar:}%percentage_used%%%{A}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
+label-mounted-underline = #2BABD9
 
 [module/bspwm]
 type = internal/bspwm
@@ -139,7 +142,7 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.color1}
-label = %{A1:gnome-system-monitor:}%percentage:3%%%{A}
+label = %{A1:gnome-system-monitor:}%percentage:2%%%{A}
 
 [module/memory]
 type = internal/memory
