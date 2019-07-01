@@ -1,6 +1,12 @@
 #! /bin/bash
 
-bspc monitor -d 一 二 三 四 五 六 七 八 九 十
+if [[ "$(hostname)" == "mblin" ]] ; then
+    bspc monitor DP-0 -d 一 二 三
+    bspc monitor DP-2 -d 四 五 六
+    bspc monitor DP-4 -d 七 八 九 十
+else
+    bspc monitor -d 一 二 三 四 五 六 七 八 九 十
+fi
 
 bspc config border_width          2
 bspc config window_gap            12
@@ -17,4 +23,4 @@ $HOME/.config/bspwm/rules-${HOSTNAME}.sh
 $HOME/.config/bspwm/autostart-${HOSTNAME}.sh
 
 # Load local wallpaper
-$HOME/.config/bspwm/wallpaper.sh &
+$HOME/.config/bspwm/wallpaper-${HOSTNAME}.sh &
