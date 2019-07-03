@@ -1,4 +1,8 @@
 #! /bin/bash
 
 xsetroot -solid black
-feh --no-xinerama --bg-scale ~/Pictures/cyberpunk-styled-city-wallpaper.jpg
+sleep 5
+while true; do
+    feh --randomize --no-xinerama --bg-fill ~/Pictures/*.jpg
+    sleep 1800
+done
