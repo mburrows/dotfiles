@@ -17,28 +17,28 @@
 ;==========================================================
 
 [colors]
-background     = #282F37
-foreground     = #F1FCF9
-foreground-alt = #555
-primary        = #FFB52A
-secondary      = #E60053
-alert          = #BD2C40
-color0         = #20262C
-color1         = #DB86BA
-color2         = #74DD91
-color3         = #E49186
-color4         = #75DBE1
-color5         = #B4A1DB
-color6         = #9EE9EA
-color7         = #F1FCF9
-color8         = #465463
-color9         = #D04E9D
-color10        = #4BC66D
-color11        = #DB695B
-color12        = #3DBAC2
-color13        = #825ECE
-color14        = #62CDCD
-color15        = #E0E5E5
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+color0 = ${xrdb:color0}
+color1 = ${xrdb:color1}
+color2 = ${xrdb:color2}
+color3 = ${xrdb:color3}
+color4 = ${xrdb:color4}
+color5 = ${xrdb:color5}
+color6 = ${xrdb:color6}
+color7 = ${xrdb:color7}
+color8 = ${xrdb:color8}
+color9 = ${xrdb:color9}
+color10 = ${xrdb:color10}
+color11 = ${xrdb:color11}
+color12 = ${xrdb:color12}
+color13 = ${xrdb:color13}
+color14 = ${xrdb:color14}
+color15 = ${xrdb:color15}
 
 [bar/master]
 width = 100%:-24
@@ -109,11 +109,11 @@ interval = 25
 
 mount-0 = /
 format-mounted-prefix = " "
-format-mounted-underline = #2BABD9
+format-mounted-underline = ${colors.color3}
 label-mounted = %{A1:thunar:}%percentage_used%%%{A}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
-label-mounted-underline = #2BABD9
+label-mounted-underline = ${colors.color3}
 
 [module/bspwm]
 type = internal/bspwm
