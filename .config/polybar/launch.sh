@@ -8,11 +8,11 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar1 and bar2
 if [[ "$(hostname)" == "mblin" ]] ; then
-    polybar left &
-    polybar middle &
-    polybar right &
+    polybar -r left &
+    polybar -r middle &
+    polybar -r right &
 else
-    polybar master &
+    polybar -r master &
 fi
 
 echo "Bars launched..."
