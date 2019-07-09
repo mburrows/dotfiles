@@ -36,9 +36,6 @@ alias e="emacsclient -n"
 alias et="emacsclient -t"
 alias l="ls -lrth"
 
-# Miscellaneous
-eval (dircolors -c ~/.dir_colors)
-
 # Load local configuration (it it exists)
 if test -f ~/.config/fish/(hostname -s).fish
     source ~/.config/fish/(hostname -s).fish

@@ -52,4 +52,4 @@ function utg -d "Search for a unit test"
     eval $ECN_BIN/ecn_unit_test --list | grep -i $argv
 end
 
-
+eval (dircolors -c ~/.dir_colors)
