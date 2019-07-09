@@ -1,4 +1,4 @@
-#include "/home/mburrows/src/nord-xresources/src/nord"
+#include "/home/mburrows/.cache/wal/colors.Xresources"
 
 XTerm*faceName:         DejaVuSansMono Nerd Font Mono
 XTerm*faceSize:         9
