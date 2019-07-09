@@ -31,7 +31,7 @@ abbr -a pg   "pgrep -fl"
 # Aliases
 alias g="git --no-pager grep -n --break -i"
 alias rl="source ~/.config/fish/config.fish"
-alias tmux="~/local/bin/tmux -2"
+alias tmux="tmux -2"
 alias e="emacsclient -n"
 alias et="emacsclient -t"
 alias l="ls -lrth"

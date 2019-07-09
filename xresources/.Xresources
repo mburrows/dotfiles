@@ -10,10 +10,6 @@ XTerm*visualBell:       true
 XTerm*utf8:             1
 XTerm*cjkWidth:         0
 
-!Emacs.font:  Inconsolata:size=16
-Emacs.font:  Inconsolata:size=16
-Emacs*fontBackend: xft
-
 URxvt.font: xft:DroidSansMono Nerd Font Mono:size=9
 URxvt.scrollBar: false
 URxvt*saveLines: 9999
