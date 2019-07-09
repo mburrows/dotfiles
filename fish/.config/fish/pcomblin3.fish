@@ -4,21 +4,21 @@ set -Ux PATH $PATH $HOME/system_tests/scripts
 set -Ux MANPATH $MANPATH $HOME/local/share/man
 
 function compiler_env_clang -d "Set compiler to icecream clang"
-    set -gx ICECC_VERSION $HOME/.icecream/f0e5783327d81cb8424e82c148871f6b.tar.gz
-    set -gx ICECC_CC /opt/bats/bin/clang
-    set -gx ICECC_CXX /opt/bats/bin/clang++
-    set -gx BUILD_DIR /builds/$USER/clang
-    set -gx CC clang
-    set -gx CXX clang++
+    set -Ux ICECC_VERSION $HOME/.icecream/f0e5783327d81cb8424e82c148871f6b.tar.gz
+    set -Ux ICECC_CC /opt/bats/bin/clang
+    set -Ux ICECC_CXX /opt/bats/bin/clang++
+    set -Ux BUILD_DIR /builds/$USER/clang
+    set -Ux CC clang
+    set -Ux CXX clang++
 end
 
 function compiler_env_gcc -d "Set compiler to icecream gcc"
-    set -gx ICECC_VERSION $HOME/.icecream/22b3d3d5f879cab4c24348e1d977e4b0.tar.gz
-    set -gx ICECC_CC /opt/rh/devtoolset-7/root/usr/bin/gcc
-    set -gx ICECC_CXX /opt/rh/devtoolset-7/root/usr/bin/g++
-    set -gx BUILD_DIR /builds/$USER/gcc
-    set -gx CC gcc
-    set -gx CXX g++
+    set -Ux ICECC_VERSION $HOME/.icecream/22b3d3d5f879cab4c24348e1d977e4b0.tar.gz
+    set -Ux ICECC_CC /opt/rh/devtoolset-7/root/usr/bin/gcc
+    set -Ux ICECC_CXX /opt/rh/devtoolset-7/root/usr/bin/g++
+    set -Ux BUILD_DIR /builds/$USER/gcc
+    set -Ux CC gcc
+    set -Ux CXX g++
 end
 
 # Default to clang compilation
