@@ -54,7 +54,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 0 
+border-size = 1 
 border-color = ${colors.color8}
 
 padding-left = 2
@@ -64,7 +64,7 @@ module-margin-left = 2
 module-margin-right = 2
 
 font-0 = "Noto Sans:size=11;1"
-font-1 = "DroidSansMono Nerd Font:style=ExtraBold,Regular;size=13;2"
+font-1 = "DroidSansMono Nerd Font:size=12;2"
 
 modules-left = bspwm 
 modules-center = xwindow 
@@ -105,7 +105,7 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-format-mounted-prefix = " "
+format-mounted-prefix = "  "
 format-mounted-underline = ${colors.color3}
 label-mounted = %{A1:thunar:}%percentage_used%%%{A}
 label-unmounted = %mountpoint% not mounted
@@ -137,7 +137,7 @@ label-empty-padding = 1
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.color1}
 label = %{A1:gnome-system-monitor:}%percentage:2%%%{A}
@@ -145,7 +145,7 @@ label = %{A1:gnome-system-monitor:}%percentage:2%%%{A}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.color6} 
 label = %percentage_used%%
@@ -184,7 +184,7 @@ format-volume = <label-volume> <bar-volume>
 label-volume = " "
 label-volume-foreground = ${colors.foreground} 
 
-format-muted-prefix = " "
+format-muted-prefix = "  "
 format-muted-foreground = ${colors.foreground}
 label-muted = muted
 
@@ -197,11 +197,11 @@ bar-volume-foreground-4 = ${colors.color2}
 bar-volume-foreground-5 = ${colors.color3}
 bar-volume-foreground-6 = ${colors.color1}
 bar-volume-gradient = false
-bar-volume-indicator = ⏽
+bar-volume-indicator = 
 bar-volume-indicator-font = 1
-bar-volume-fill = ⏽
+bar-volume-fill = 
 bar-volume-fill-font = 1
-bar-volume-empty = ⏽
+bar-volume-empty = 
 bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
