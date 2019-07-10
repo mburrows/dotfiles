@@ -140,6 +140,10 @@ super + alt + shift + {h,n,e,i}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# Make node split ratios balanced 
+super + alt + b
+	bspc node @parent --balance
+
 #
 # App shortcuts
 # hyper = ctrl + shift + alt + super on my keyboard
