@@ -197,11 +197,11 @@ bar-volume-foreground-4 = ${colors.color2}
 bar-volume-foreground-5 = ${colors.color3}
 bar-volume-foreground-6 = ${colors.color1}
 bar-volume-gradient = false
-bar-volume-indicator = 
+bar-volume-indicator = 絛
 bar-volume-indicator-font = 1
-bar-volume-fill = 
+bar-volume-fill = 絛
 bar-volume-fill-font = 1
-bar-volume-empty = 
+bar-volume-empty = 絛
 bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
