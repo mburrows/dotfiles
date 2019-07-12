@@ -84,7 +84,7 @@ class PerfScreen(BaseScreen):
              mem = psutil.virtual_memory()
              dsk = psutil.disk_usage('/')
              self.updateScreen(bytearray(self.barGraph('cpu', cpu) +
-                                         self.barGraph('mem', mem.available/mem.total*100.0) +
+                                         self.barGraph('mem', mem.percent) +
                                          self.barGraph('dsk', dsk.percent) +
                                          self.blankLine(),
                                          encoding='utf8'))
