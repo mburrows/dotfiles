@@ -28,4 +28,5 @@ $HOME/.config/bspwm/rules-${HOSTNAME}.sh
 $HOME/.config/bspwm/autostart-${HOSTNAME}.sh
 
 # Load local wallpaper
-$HOME/.config/bspwm/wallpaper-${HOSTNAME}.sh &
+pkill wallpaper
+$HOME/.config/bspwm/wallpaper.sh &
