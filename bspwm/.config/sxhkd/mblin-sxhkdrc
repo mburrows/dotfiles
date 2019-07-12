@@ -81,15 +81,12 @@ super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
 super + {a,o}
   bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+# focus the last desktop on the current monitor
+super + Tab
+	bspc desktop -f last.local
 
 super + {_,shift + }{1,4,7,0}
 	bspc {desktop -f,node -d} '^{1,2,3,4}'
