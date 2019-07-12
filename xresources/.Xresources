@@ -1,7 +1,7 @@
 #include "/home/mburrows/.cache/wal/colors.Xresources"
 
-XTerm*faceName:         DejaVuSansMono Nerd Font Mono
-XTerm*faceSize:         9
+XTerm*faceName:         DroidSansMono Nerd Font
+XTerm*faceSize:         10
 XTerm*saveLines:        9999
 XTerm*scrollBar:        false
 XTerm*scrollKey:        true
