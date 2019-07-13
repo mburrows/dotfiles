@@ -81,9 +81,6 @@ super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
 super + {a,o}
   bspc desktop -f {prev,next}.local
 
@@ -168,4 +165,4 @@ ctrl + shift + alt + super + v
   termite -e alsamixer
 
 ctrl + shift + alt + super + s
-  sleep 0.2; scrot -s -e 'mv $f ~/Pictures/'
+  sleep 0.2; scrot -s -e 'mv $f ~/Screenshots/'
