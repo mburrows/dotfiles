@@ -4,8 +4,8 @@ source '~/.mutt/dracula-theme.muttrc'
 set spoolfile='imap://mburrows@ukcas.uk.bats.com:143/INBOX'
 set folder='imap://mburrows@ukcas.uk.bats.com:143/'
 set realname='Matt Burrows'
-set from='mburrows@bats.com'
-set hostname=bats.com
+set from='mburrows@cboe.com'
+set hostname=cboe.com
 set postponed='=Drafts'
 set record='=Sent'
 set query_command='~/.mutt/ldap.sh '%s''
