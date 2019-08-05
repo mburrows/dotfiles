@@ -7,7 +7,7 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar1 and bar2
-if [[ "$(hostname)" == "mblin" ]] ; then
+if [[ "$(hostname -s)" == "mnld-mabu" ]] ; then
     polybar -r left &
     polybar -r middle &
     polybar -r right &

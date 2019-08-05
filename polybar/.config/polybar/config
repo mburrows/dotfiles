@@ -1,3 +1,4 @@
+;
 ;==========================================================
 ;
 ;
@@ -41,11 +42,11 @@ color14 = ${xrdb:color14}
 color15 = ${xrdb:color15}
 
 [bar/master]
-width = 100%:-24
-height = 32
+width = 100%
+height = 28
 radius = 0
-offset-x = 12
-offset-y = 12
+offset-x = 0
+offset-y = 0
 fixed-center = true
 
 background = ${colors.background}
@@ -64,9 +65,9 @@ module-margin-left = 2
 module-margin-right = 2
 
 font-0 = "Noto Sans:size=11;1"
-font-1 = "DroidSansMono Nerd Font:size=12;2"
+font-1 = "DroidSansMono Nerd Font:size=11;2"
 
-modules-left = bspwm 
+modules-left = bspwm i3 
 modules-center = xwindow 
 modules-right = volume filesystem memory cpu temperature date settings powermenu
 
@@ -80,21 +81,28 @@ scroll-down = bspwm-deskprev
 
 [bar/left]
 inherit = bar/master
-monitor = DP-0
-modules-left = bspwm
+monitor = DP-3
 modules-center =
 modules-right =
+wm-restack = i3
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
 
 [bar/middle]
 inherit = bar/master
-monitor = DP-2
+monitor = DP-4
+wm-restack = i3
+scroll-up = i3wm-desknext
+scroll-down = i3wm-deskprev
 
 [bar/right]
 inherit = bar/master
-monitor = DP-4
-modules-left = bspwm
+monitor = HDMI-2 
 modules-center =
 modules-right =
+wm-restack = i3
+scroll-up = i3wm-desknext
+scroll-down = i3wm-deskprev
 
 [module/xwindow]
 type = internal/xwindow
@@ -107,7 +115,7 @@ interval = 25
 mount-0 = /
 format-mounted-prefix = "  "
 format-mounted-underline = ${colors.color3}
-label-mounted = %{A1:thunar:}%percentage_used%%%{A}
+label-mounted = %{A1:nautilus:}%percentage_used%%%{A}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 label-mounted-underline = ${colors.color3}
@@ -264,7 +272,41 @@ menu-3-1-exec = systemctl suspend
 [module/settings]
 type = custom/text
 content = "漣"
-click-left = xfce4-settings-manager
+click-left = lxappearance
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
 [settings]
 screenchange-reload = true

@@ -34,12 +34,16 @@ bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+Shift+w kill
 
 # start program launcher
 bindsym $mod+d exec rofi -show run
 
 # ssh menu
 bindsym $mod+p exec rofi -show ssh
+
+# window menu
+bindsym $mod+space exec rofi -show window
 
 # change focus (colemak style)
 bindsym $mod+h focus left
@@ -84,9 +88,6 @@ bindsym $mod+q layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+u focus parent
@@ -138,9 +139,9 @@ bindsym $mod+Control+Shift+9 move container to workspace 19
 bindsym $mod+Control+Shift+0 move container to workspace 20
 
 # workspace output assignments (as reported by xrandr)
-set $monitorLeft   "DP-0"
-set $monitorMiddle "DP-2"
-set $monitorRight  "DP-4"
+set $monitorLeft   "DP-3"
+set $monitorMiddle "DP-4"
+set $monitorRight  "HDMI-2"
 
 workspace 1 output $monitorLeft
 workspace 2 output $monitorMiddle
@@ -162,14 +163,12 @@ workspace 17 output $monitorLeft
 workspace 18 output $monitorMiddle
 workspace 19 output $monitorRight
 
-assign [class="Emacs"] 2
-
-for_window [class="Teensy"] floating enable
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -199,64 +198,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-
-set $barFont "pango:System San Francisco Display 10"
-
-bar {
-	output $monitorMiddle
-        status_command i3status
-	font $barFont
-	position top
-	tray_output $monitorMiddle
-	colors {
-               background $nord0
-               statusline $nord8
-#                                 border background
-               focused_workspace  $nord3 $nord8
-               active_workspace   $nord3 $nord8
-               inactive_workspace $nord8 $nord3
-               urgent_workspace   $nord3 $nord15
-        }
-}
-
-bar {
-	output $monitorLeft
-	status_command exec /home/mburrows/scripts/gsmstatus.sh	
-	font $barFont
-	position top
-	tray_output none
-	colors {
-               background $nord0
-               statusline $nord8
-#                                 border background
-               focused_workspace  $nord3 $nord8
-               active_workspace   $nord3 $nord8
-               inactive_workspace $nord8 $nord3
-               urgent_workspace   $nord3 $nord15
-        }
-}
-
-bar {
-	output $monitorRight
-        status_command i3status -c /home/mburrows/.i3status.timezones.conf
-	font $barFont
-	position top
-	tray_output none
-	colors {                                                
-               background $nord0
-               statusline $nord8
-#                                 border background
-               focused_workspace  $nord3 $nord8
-               active_workspace   $nord3 $nord8
-               inactive_workspace $nord8 $nord3
-               urgent_workspace   $nord3 $nord15 
-        }
-}
-
 # Easy workspace switching
-# workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab move container to workspace back_and_forth
 
@@ -265,15 +208,19 @@ bindsym $mod+m exec i3-input -F 'mark %s' -P 'Mark name: '
 bindsym $mod+Shift+m exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
 
 # Scratchpad windows
-bindsym $mod+Shift+o move scratchpad
-bindsym $mod+o scratchpad show
+bindsym $mod+Shift+z move scratchpad
+bindsym $mod+z scratchpad show
+
+# Next/previous workspace on current monitor only
+bindsym $mod+o workspace next_on_output
+bindsym $mod+a workspace prev_on_output
 
 # Rename workspace binding (mirroring the tmux binding)
 bindsym $mod+comma exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # Move the current workspace to the next output
-bindsym $mod+z move workspace to output left
-bindsym $mod+x move workspace to output right
+#bindsym $mod+comma move workspace to output left
+#bindsym $mod+period move workspace to output right
 
 # Bulk workspace switching (switches workspaces on all 3 monitors)
 bindsym $hyper+1 workspace 1,  workspace 2,  workspace 3
@@ -284,29 +231,37 @@ bindsym $hyper+5 workspace 14, workspace 15, workspace 16
 bindsym $hyper+6 workspace 17, workspace 18, workspace 19
 
 # Application shortcuts
-bindsym $hyper+c exec google-chrome
-bindsym $hyper+d exec $term -e "vim /home/mburrows/.i3/config"
+bindsym $hyper+d exec $term -e "vim /home/mburrows/.config/i3/config"
 bindsym $hyper+e [class="Emacs"] focus
-bindsym $hyper+g [class="Google-chrome"] focus
-bindsym $hyper+h exec xterm -e "ssh -qt pcomblin2 '/home/mburrows/scripts/gsmstatus -c sea seb set scc pea peb pet pcc && read'"
+bindsym $hyper+h exec $term -e "ssh pcomblin3.etc.cboe.net 'gsmstatus -c sea seb sed ses set scc pea peb ped pes pet pcc && read'"
+bindsym $hyper+l exec xautolock -locknow
+bindsym $hyper+o [class="Opera"] focus
 bindsym $hyper+s exec shutter
 bindsym $hyper+v exec $term -e alsamixer
-bindsym $hyper+x exec xterm -e "ssh -X -t pcomblin2 TERM=xterm-256color mutt"
+bindsym $hyper+w exec opera
 
-bindsym $mod+t   exec $term -e "ssh -X pcomblin3.etc.cboe.net"
+bindsym $mod+t exec $term -e "ssh -X pcomblin3.etc.cboe.net"
+bindsym $mod+j exec $term -e "ssh scolinjh1.uk.bats.prod -t 'ssh pcoutil6 -l mburrows -t'"
 
 # Gaps (requires i3-gaps build)
-for_window [class="^.*"] border pixel 0
-gaps inner 5
+for_window [class="^.*"] border pixel 2
+gaps inner 10
 gaps outer 0
-smart_gaps on
+
+# Placement rules
+assign [class="Emacs"] 2
+for_window [class="Teensy"] floating enable
 
 # Startup standard apps
-exec_always feh --bg-scale /home/mburrows/dotfiles/nord_wallpaper.png
-exec compton -f --config ~/.compton.conf --vsync opengl
-exec google-chrome
-exec xscreensaver
-exec klipper
-#exec xsetroot -solid black
+exec_always --no-startup-id ~/.fehbg
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id setxkbmap us
 
+exec --no-startup-id xautolock -detectsleep -time 10 -locker "i3lock -c 000000" 
+exec --no-startup-id compton 
+
+# Setup initial state
+exec --no-startup-id i3-msg 'workspace 1; exec opera'
+exec --no-startup-id i3-msg 'workspace 3; exec termite; exec termite'
+exec --no-startup-id i3-msg 'workspace 4; exec evolution; workspace 1'
 

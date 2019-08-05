@@ -1,9 +1,10 @@
 #! /bin/bash
 
-if [[ "$(hostname)" == "mblin" ]] ; then
-    bspc monitor DP-0 -d     
-    bspc monitor DP-2 -d     
+if [[ "$(hostname -s)" == "mnld-mabu" ]] ; then
+
+    bspc monitor DP-3 -d     
     bspc monitor DP-4 -d     
+    bspc monitor HDMI-2 -d     
 else
     bspc monitor -d          
 fi
@@ -22,10 +23,10 @@ bspc config borderless_monocle   false
 bspc config gapless_monocle      false
 
 # Load local rules
-$HOME/.config/bspwm/rules-${HOSTNAME}.sh
+$HOME/.config/bspwm/rules-$(hostname -s).sh
 
 # Load local autostarts
-$HOME/.config/bspwm/autostart-${HOSTNAME}.sh
+$HOME/.config/bspwm/autostart-$(hostname -s).sh
 
 # Load local wallpaper
 pkill wallpaper
