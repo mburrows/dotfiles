@@ -29,13 +29,15 @@
 
 #window {
     background-color: @backgroundcolor;
-    border-color: @separatorcolor;
-    border: 1;
-    border-radius: 2px;
+    border-color: @backgroundcolor;
+    padding: 10px;
+    border: 1px;
+    border-radius: 25px;
+    transparency: "screenshot";
 }
 
 #mainbox {
-    border: 2;
+    border: 0;
     border-color: #d08770;
     padding: 0;
     background-color: @backgroundcoloralternate;

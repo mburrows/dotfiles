@@ -231,12 +231,12 @@ bindsym $hyper+5 workspace 14, workspace 15, workspace 16
 bindsym $hyper+6 workspace 17, workspace 18, workspace 19
 
 # Application shortcuts
-bindsym $hyper+d exec $term -e "vim /home/mburrows/.config/i3/config"
-bindsym $hyper+e [class="Emacs"] focus
+bindsym $hyper+e [class="Code - Insiders"] focus
 bindsym $hyper+h exec $term -e "ssh pcomblin3.etc.cboe.net 'gsmstatus -c sea seb sed ses set scc pea peb ped pes pet pcc && read'"
 bindsym $hyper+l exec xautolock -locknow
+bindsym $hyper+m [class="Evolution"] focus
 bindsym $hyper+o [class="Opera"] focus
-bindsym $hyper+s exec shutter
+bindsym $hyper+s exec $term -e "scrot -s"
 bindsym $hyper+v exec $term -e alsamixer
 bindsym $hyper+w exec opera
 
@@ -257,8 +257,9 @@ exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id setxkbmap us
 
-exec --no-startup-id xautolock -detectsleep -time 10 -locker "i3lock -c 000000" 
-exec --no-startup-id compton 
+exec --no-startup-id xautolock -detectsleep -time 10 -locker "i3lock -c 000000"
+exec --no-startup-id compton
+exec --no-startup-id copyq
 
 # Setup initial state
 exec --no-startup-id i3-msg 'workspace 1; exec opera'

@@ -8,8 +8,8 @@ rofi.padding:               0
 rofi.separator-style:       none
 rofi.hide-scrollbar:        true
 rofi.line-margin:           0
-rofi.font:                  Noto Sans 10
-rofi.theme:                 ~/.cache/wal/colors-rofi-dark.rasi
+rofi.font:                  Noto Sans 9
+rofi.theme:                 ~/.config/rofi/custom-nord.rasi
 rofi.terminal:              termite
 rofi.ssh-command:           {terminal} -e "{ssh-client} {host}"
 rofi.run-shell-command:     {terminal} -e "{cmd}"

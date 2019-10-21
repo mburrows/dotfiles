@@ -3,7 +3,7 @@ allow_bold = false
 audible_bell = false
 clickable_url = true
 dynamic_title = true
-font = DroidSansMono Nerd Font 10
+font = Fira Code Nerd Font 11
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -38,33 +38,48 @@ size_hints = true
 scrollbar = off
 
 [colors]
-# Project:    Nord Termite
-# Repository: https://github.com/arcticicestudio/nord-termite
-cursor = #d8dee9
-cursor_foreground = #2e3440
+foreground = #c5c8c6
+foreground_bold = #ffffff
+#foreground_dim = #888888
+#background = #ededed
+background = #1d1f21
+#cursor = #aeafad
 
-foreground = #d8dee9
-foreground_bold = #d8dee9
-background = #2e3440
+# if unset, will reverse foreground and background
+highlight = #d6d6d6
 
-highlight = #4c566a
+# colors from color0 to color254 can be set
+# Black + Grey
+color0 = #1d1f21
+color8 = #969896
 
-color0  = #3b4252
-color1  = #bf616a
-color2  = #a3be8c
-color3  = #ebcb8b
-color4  = #81a1c1
-color5  = #b48ead
-color6  = #88c0d0
-color7  = #e5e9f0
-color8  = #4c566a
-color9  = #bf616a
-color10 = #a3be8c
-color11 = #ebcb8b
-color12 = #81a1c1
-color13 = #b48ead
-color14 = #8fbcbb
-color15 = #eceff4
+# Red + Bright Red
+color1 = #912226
+color9 = #cc6666
+
+# Green + Bright Green
+color2 = #778900
+color10 = #b5bd68
+
+# Yellow (Orange) + Bright Yellow (Yellow)
+color3 = #ae7b00
+color11 = #f0c674
+
+# Blue + Bright Blue
+color4 = #1d2594
+color12 = #81a2be
+
+# Magenta (Purple) + Bright Magenta
+color5 = #682a9b
+color13 = #b294bb
+
+# Cyan (Aqua) + Bright Cyan
+color6 = #2b6651
+color14 = #8abeb7
+
+# Light Grey (Selection) + White (Current Line)
+color7 = #929593
+color15 = #ecebec
 
 [hints]
 #font = Monospace 12
