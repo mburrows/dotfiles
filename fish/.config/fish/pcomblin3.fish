@@ -1,24 +1,24 @@
 # BATS specific fish configuration
 
-set -Ux PATH $PATH $HOME/system_tests/scripts
+set -Ux PATH $PATH $HOME/.local/bin $HOME/system_tests/scripts
 set -Ux MANPATH $MANPATH $HOME/local/share/man
 
 function compiler_env_clang -d "Set compiler to icecream clang"
-    set -Ux ICECC_VERSION $HOME/.icecream/f0e5783327d81cb8424e82c148871f6b.tar.gz
-    set -Ux ICECC_CC /opt/bats/bin/clang
-    set -Ux ICECC_CXX /opt/bats/bin/clang++
-    set -Ux BUILD_DIR /builds/$USER/clang
-    set -Ux CC clang
-    set -Ux CXX clang++
+    set -gx ICECC_VERSION $HOME/.icecream/3e23e81a35e996099334d076e895678a.tar.gz
+    set -gx ICECC_CC /opt/bats/bin/clang
+    set -gx ICECC_CXX /opt/bats/bin/clang++
+    set -gx BUILD_DIR /builds/$USER/clang
+    set -gx CC clang
+    set -gx CXX clang++
 end
 
 function compiler_env_gcc -d "Set compiler to icecream gcc"
-    set -Ux ICECC_VERSION $HOME/.icecream/22b3d3d5f879cab4c24348e1d977e4b0.tar.gz
-    set -Ux ICECC_CC /opt/rh/devtoolset-7/root/usr/bin/gcc
-    set -Ux ICECC_CXX /opt/rh/devtoolset-7/root/usr/bin/g++
-    set -Ux BUILD_DIR /builds/$USER/gcc
-    set -Ux CC gcc
-    set -Ux CXX g++
+    set -gx ICECC_VERSION $HOME/.icecream/22b3d3d5f879cab4c24348e1d977e4b0.tar.gz
+    set -gx ICECC_CC /opt/rh/devtoolset-7/root/usr/bin/gcc
+    set -gx ICECC_CXX /opt/rh/devtoolset-7/root/usr/bin/g++
+    set -gx BUILD_DIR /builds/$USER/gcc
+    set -gx CC gcc
+    set -gx CXX g++
 end
 
 # Default to clang compilation
@@ -47,6 +47,7 @@ abbr -a pw "prt_wire"
 abbr -a pf "prt_fix --nohb"
 abbr -a tf "tail -F"
 abbr -a pks "pkill ecn_ ; pkill mtf_ ; pkill test_orderentry ; pkill test_topclient"
+abbr -a sth "~/system_tests/scripts/sth.py"
 
 function utg -d "Search for a unit test"
     eval $ECN_BIN/ecn_unit_test --list | grep -i $argv
