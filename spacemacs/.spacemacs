@@ -49,6 +49,7 @@ This function should only modify configuration layer settings."
      shell-scripts
      vinegar
      bats
+     mdb-org
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      gtags
      (c-c++ :variables
