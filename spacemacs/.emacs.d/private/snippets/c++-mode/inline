@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: #include inline
+# key: inline
+# --
+#include "`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`_inline.h"

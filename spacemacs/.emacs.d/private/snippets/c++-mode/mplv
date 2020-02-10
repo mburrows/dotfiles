@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: MPL vector
+# key: mplv
+# --
+boost::mpl::vector<$1>$0

@@ -1,0 +1,19 @@
+# key: mengonce
+# name: MENG once
+# --
+#ifndef ${1:`(upcase (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))`_H}
+#define $1
+
+namespace ECN {
+namespace ME {
+namespace ${2:EU} {
+
+$0
+
+${3:#include "`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`_inline.h"}
+
+} // namespace $2
+} // namespace ME
+} // namespace ECN
+
+#endif /* $1 */

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: operator()
+# key: mengop
+# --
+struct ${1:FunctorName} {
+    template <typename ${2:InboundSide}>
+    inline void operator()(Engine const &, ${3:HandleContext} & context) const;
+};

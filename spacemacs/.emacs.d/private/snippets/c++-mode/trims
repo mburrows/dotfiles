@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name:trims
+# key:trims
+# --
+$1.toTrimmedString().c_str()$0

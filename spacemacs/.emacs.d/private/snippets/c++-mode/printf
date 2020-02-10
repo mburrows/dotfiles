@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: printf
+# key: printf
+# --
+printf("%s[%d]:${1:%s}\n", __func__, __LINE__, $2);$0

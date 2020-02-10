@@ -1,0 +1,14 @@
+# key: mengns
+# name: MENG ns
+# --
+${1:#include "`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`.h"}
+
+namespace ECN {
+namespace ME {
+namespace ${2:EU} {
+
+$0
+
+} // namespace $2
+} // namespace ME
+} // namespace ECN

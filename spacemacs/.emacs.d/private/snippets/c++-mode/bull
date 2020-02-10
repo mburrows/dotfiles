@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bull 
+# key: bull
+# --
+#if _BullseyeCoverage
+#pragma BullseyeCoverage ${1:off}
+#endif

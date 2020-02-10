@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mdts
+# key: mdts
+# --
+microDateTimeToLocalString($1).c_str()

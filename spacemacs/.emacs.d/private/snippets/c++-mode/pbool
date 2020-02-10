@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: pbool
+# key: pbool
+# --
+$1 ? "true" : "false"$0
