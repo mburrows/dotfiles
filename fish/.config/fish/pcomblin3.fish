@@ -2,9 +2,10 @@
 
 set -Ux PATH $PATH $HOME/.local/bin $HOME/system_tests/scripts
 set -Ux MANPATH $MANPATH $HOME/local/share/man
+set -Ux LD_LIBRARY_PATH /opt/bats/lib /opt/bats/lib64
 
 function compiler_env_clang -d "Set compiler to icecream clang"
-    set -gx ICECC_VERSION $HOME/.icecream/3e23e81a35e996099334d076e895678a.tar.gz
+    set -gx ICECC_VERSION $HOME/.icecream/d9a591e3756b738f0231588be2c56489.tar.gz
     set -gx ICECC_CC /opt/bats/bin/clang
     set -gx ICECC_CXX /opt/bats/bin/clang++
     set -gx BUILD_DIR /builds/$USER/clang
@@ -24,7 +25,7 @@ end
 # Default to clang compilation
 compiler_env_clang
 
-set -Ux ECN_ENVIRONMENT {$USER}_beta
+set -Ux ECN_ENVIRONMENT {$USER}_cedx
 set -Ux ECN_BIN /opt/ecn/users/mburrows/bin
 set -Ux ECN_SRC /opt/ecn/users/mburrows/source/ecn/source
 
@@ -32,14 +33,16 @@ set -Ux ECN_SRC /opt/ecn/users/mburrows/source/ecn/source
 set NPM_PACKAGES {$HOME}/.npm-packages
 set -Ux PATH {$NPM_PACKAGES}/bin $PATH
 
-abbr -a md "~/cpp/bb debug -j32"
-abbr -a mr "~/cpp/bb release -j32"
-abbr -a icemon "env USE_SCHEDULER=pcodev1.uk.bats.com icemon"
-abbr -a ut "$ECN_BIN/ecn_unit_test --show_progress=yes"
+abbr -a md "~/cpp/bb --icecream debug -j32"
+abbr -a mr "~/cpp/bb --icecream release -j32"
+abbr -a mc "~/cpp/bb --icecream configure -f -l8 --variant=debug"
+abbr -a mclean "~/cpp/bb --icecream clean -j32 -l8"
+abbr -a icemon "env USE_SCHEDULER=pcodev5 icemon"
+abbr -a ut "$ECN_BIN/ecn_unit_test"
 abbr -a utl "$ECN_BIN/ecn_unit_test --log_level=unit_scope"
 abbr -a utlr "$ECN_BIN/ecn_unit_test --log_level=unit_scope --run_test="
-abbr -a utr "$ECN_BIN/ecn_unit_test --show_progress=yes --run_test="
-abbr -a pt "~/cpp/ecn_unit_test/parallel_test -1"
+abbr -a utr "$ECN_BIN/ecn_unit_test --run_test="
+abbr -a pt "$ECN_BIN/ecn_unit_test -P --fuzzy"
 abbr -a wg "wgrep -P --line-buffered"
 abbr -a wr "wrange -r"
 abbr -a wf "wtail -f"

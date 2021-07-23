@@ -12,7 +12,7 @@ Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
-Plug 'craigemery/vim-autotag'
+"Plug 'craigemery/vim-autotag'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sgur/ctrlp-extensions.vim'
 Plug 'godlygeek/tabular'
@@ -88,7 +88,8 @@ if &t_Co >= 8 || has("gui_running")
     syntax on
     set t_Co=256
     set background=dark                                  
-    let base16colorspace=256  " Access colors present in 256 colorspace
+    " 
+    " let base16colorspace=256  " Access colors present in 256 colorspace
     silent! colorscheme nord
     " tabs, grey out inactive menus, menu bar, console dialogs, no scrollbars,
     " no toolbars

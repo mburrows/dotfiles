@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: boost::optional
+# name: std::optional
 # key: opt
 # --
-boost::optional<$1>$0
+std::optional<$1>$0

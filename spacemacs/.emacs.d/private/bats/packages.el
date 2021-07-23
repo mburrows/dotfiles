@@ -27,21 +27,23 @@
 (setq c-default-style "bats")
 
 (setq bats-ld-library-path
-      '("/opt/rh/devtoolset-7/root/usr/lib64"
-        "/opt/rh/devtoolset-7/root/usr/lib"
-        "/opt/rh/devtoolset-7/root/usr/lib64/dyninst"
-        "/opt/rh/devtoolset-7/root/usr/lib/dyninst"
-        "/opt/rh/devtoolset-8/root/usr/lib64"
-        "/opt/rh/devtoolset-8/root/usr/lib"
-        "/opt/rh/devtoolset-8/root/usr/lib64/dyninst"
-        "/opt/rh/devtoolset-8/root/usr/lib/dyninst"
+      '("/opt/rh/devtoolset-9/root/usr/lib64"
+        "/opt/rh/devtoolset-9/root/usr/lib"
+        "/opt/rh/devtoolset-9/root/usr/lib64/dyninst"
+        "/opt/rh/devtoolset-9/root/usr/lib/dyninst"
         "/opt/bats/lib64"
         "/opt/bats/lib"
         "/opt/ecn/users/mburrows/bin"))
 
-(defun get-cpp-directory () "~/cpp/")
+(defun get-bin-directory () "/opt/ecn/users/mburrows/bin")
 (defun word-empty-p (word) (string= word ""))
 (defun get-ld-library-path () (string-join bats-ld-library-path ":"))
+
+(defun run-fuzzy-test-cmd (fuzzy)
+  (format "export LD_LIBRARY_PATH=%s; %s/ecn_unit_test -P --fuzzy %s"
+          (get-ld-library-path)
+          (get-bin-directory)
+          fuzzy))
 
 (defun run-unit-test ()
   "Run ecn unit test case with symbol under the point as the test name"
@@ -49,17 +51,14 @@
   (let ((testName (thing-at-point 'symbol)))
     (unless (word-empty-p testName)
       (message (format "Running test %s..." testName))
-      (shell-command (format "export LD_LIBRARY_PATH=%s; %secn_unit_test/parallel_test -t %s"
-                             (get-ld-library-path)
-                             (get-cpp-directory)
-                             testName))
+      (shell-command (run-fuzzy-test-cmd testName))
       (message "done"))))
 
-(defun run-parallel-test ()
-  "Run ecn parallet tests"
+(defun run-fuzzy-test ()
+  "Run ecn fuzzy tests"
   (interactive)
-  (let ((testOptions (read-string "Test Options: ")))
-    (async-shell-command (format "export LD_LIBRARY_PATH=/opt/bats/lib64:/opt/ecn/bin; %secn_unit_test/parallel_test -1 %s" (get-cpp-directory) testOptions))))
+  (let ((fuzzy (read-string "Fuzzy: ")))
+    (async-shell-command (run-fuzzy-test-cmd fuzzy))))
 
 (defun run-boost-unit-test ()
   "Run boost unit test case. Point should be somewhere in the body of the test case."
@@ -101,11 +100,9 @@
           (lambda()
             ;; (push '(?/ . ("/*" . "*/")) evil-surround-pairs-alist)
             (local-set-key (kbd "<f2>") 'bats-find-other-file)
-            (local-set-key (kbd "<f6>") 'run-unit-test)
-            (local-set-key (kbd "<f7>") 'run-parallel-test)
-            (local-set-key (kbd "<f8>") 'run-boost-unit-test)))
-
-(add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))
+            (local-set-key (kbd "<f7>") 'run-unit-test)
+            (local-set-key (kbd "<f8>") 'run-boost-unit-test)
+            (local-set-key (kbd "<f9>") 'run-fuzzy-test)))
 
 ;; Custom sql postgres settings
 (add-hook 'sql-login-hook
@@ -133,5 +130,10 @@
                     buffer)))
 
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
+
+(defun bats-build-compdb ()
+  "Add compdb extensions to the compile_commands.json file"
+  (interactive)
+  (async-shell-command "cd /builds/mburrows/ecn/build/debug; ~/local/bin/compdb -p . list > compile_commands.json.extended"))
 
 ;;; packages.el ends here

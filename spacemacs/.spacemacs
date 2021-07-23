@@ -32,13 +32,11 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(helm
-     ;; gtags
+   '(markdown
+     helm
      (auto-completion :variables auto-completion-enable-snippets-in-popup t)
      (org :variables org-want-todo-bindings t)
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
+     (shell :variables shell-default-position 'right)
      (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      spell-checking
      git
@@ -51,11 +49,9 @@ This function should only modify configuration layer settings."
      bats
      mdb-org
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+     (c-c++ :variables c-c++-default-mode-for-headers 'c++-mode)
+     debug
      gtags
-     (c-c++ :variables
-            c-c++-default-mode-for-headers 'c++-mode
-            c-c++-backend 'lsp-ccls)
-     dap
      )
 
    ;; List of additional packages that will be installed without being
@@ -190,8 +186,10 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(sanityinc-tomorrow-night
-                         sanityinc-tomorrow-day)
+   dotspacemacs-themes '(tango
+                         sanityinc-tomorrow-night
+                         sanityinc-tomorrow-day
+                         sanityinc-solarized-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -208,7 +206,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Droid Sans Mono for Powerline"
-                               :size 14
+                               :size 13
                                :weight normal
                                :width normal)
 
@@ -364,21 +362,21 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil `smartparens-strict-mode' will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
 
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc...
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis nil
+   dotspacemacs-smart-closing-parenthesis t
 
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
-   dotspacemacs-highlight-delimiters 'all
+   dotspacemacs-highlight-delimiters 'current
 
    ;; If non-nil, start an Emacs server if one is not already running.
    ;; (default nil)
-   dotspacemacs-enable-server nil
+   dotspacemacs-enable-server t
 
    ;; Set the emacs server socket location.
    ;; If nil, uses whatever the Emacs default is, otherwise a directory path
@@ -477,17 +475,27 @@ before packages are loaded."
   (setq-default git-magit-status-fullscreen t)
 
   (setq projectile-use-git-grep t)
-
+  
   (push 'magit-mode evil-snipe-disabled-modes)
   (push 'org-mode evil-snipe-disabled-modes)
   (evil-snipe-override-mode +1)
 
-  (global-set-key (kbd "<f12>") 'evil-mc-make-cursor-move-next-line)
-  (global-set-key (kbd "<XF86Tools>") 'evil-mc-undo-all-cursors)
+  (global-set-key (kbd "<f10>") 'evil-mc-make-and-goto-prev-match)
+  (global-set-key (kbd "S-<f10>") 'evil-mc-skip-and-goto-prev-match)
+  (global-set-key (kbd "<f11>") 'evil-mc-undo-all-cursors)
+  (global-set-key (kbd "<f12>") 'evil-mc-make-and-goto-next-match)
+  (global-set-key (kbd "S-<f12>") 'evil-mc-skip-and-goto-next-match)
 
   ;; Without this config pasting is very slow when using cquery backend
   (add-to-list 'spacemacs-indent-sensitive-modes 'c++-mode)
   (add-to-list 'spacemacs-indent-sensitive-modes 'c-mode)
+
+  (add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))
+
+  (add-hook 'fish-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode t)
+              (setq tab-width 4)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -502,9 +510,58 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   (vector "#000000" "#d54e53" "#b9ca4a" "#e7c547" "#7aa6da" "#c397d8" "#70c0b1" "#eaeaea"))
+ '(beacon-color "#d54e53")
+ '(evil-want-Y-yank-to-eol nil)
+ '(fci-rule-color "#424242")
+ '(flycheck-color-mode-line-face-to-color 'mode-line-buffer-id)
+ '(frame-background-mode 'light)
+ '(hl-todo-keyword-faces
+   '(("TODO" . "#dc752f")
+     ("NEXT" . "#dc752f")
+     ("THEM" . "#2d9574")
+     ("PROG" . "#3a81c3")
+     ("OKAY" . "#3a81c3")
+     ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f")
+     ("DONE" . "#42ae2c")
+     ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d")
+     ("HACK" . "#b1951d")
+     ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f")
+     ("XXX+" . "#dc752f")
+     ("\\?\\?\\?+" . "#dc752f")))
+ '(org-agenda-files
+   '("~/org/volstrat.org" "~/org/inbox.org" "~/org/work.org" "~/org/home.org"))
  '(package-selected-packages
-   (quote
-    (lsp-ui lsp-python-ms helm-lsp flycheck-ycmd flycheck-rtags flycheck-pos-tip pos-tip dap-mode lsp-treemacs bui cquery company-lsp color-theme-sanityinc-tomorrow ccls lsp-mode markdown-mode yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key vterm volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-persp treemacs-magit treemacs-evil toc-org terminal-here symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle shell-pop restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless multi-term move-text magit-svn magit-section magit-gitflow macrostep lorem-ipsum live-py-mode link-hint insert-shebang indent-guide importmagic hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-gtags helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ ggtags fuzzy font-lock+ flyspell-correct-helm flycheck-package flycheck-elsa flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish devdocs define-word cython-mode cpp-auto-include company-ycmd company-statistics company-shell company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))))
+   '(vmd-mode mmm-mode markdown-toc gh-md emoji-cheat-sheet-plus company-emoji color-theme-sanityinc-solarized realgud test-simple loc-changes load-relative phpunit phpcbf php-extras php-auto-yasnippets geben drupal-mode counsel-gtags counsel swiper ivy company-phpactor phpactor composer php-runtime company-php ac-php-core xcscope php-mode lsp-ui lsp-python-ms helm-lsp flycheck-ycmd flycheck-rtags flycheck-pos-tip pos-tip dap-mode lsp-treemacs bui cquery company-lsp color-theme-sanityinc-tomorrow ccls lsp-mode markdown-mode yasnippet-snippets yapfify xterm-color ws-butler writeroom-mode winum which-key vterm volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-persp treemacs-magit treemacs-evil toc-org terminal-here symon symbol-overlay string-inflection sql-indent spaceline-all-the-icons smeargle shell-pop restart-emacs rainbow-delimiters pytest pyenv-mode py-isort popwin pippel pipenv pip-requirements pcre2el password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-bullets org-brain open-junk-file nameless multi-term move-text magit-svn magit-section magit-gitflow macrostep lorem-ipsum live-py-mode link-hint insert-shebang indent-guide importmagic hybrid-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-ls-git helm-gtags helm-gitignore helm-git-grep helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ ggtags fuzzy font-lock+ flyspell-correct-helm flycheck-package flycheck-elsa flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline disaster diminish devdocs define-word cython-mode cpp-auto-include company-ycmd company-statistics company-shell company-rtags company-c-headers company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode browse-at-remote blacken auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))
+ '(pdf-view-midnight-colors '("#655370" . "#fbf8ef"))
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   '((20 . "#d54e53")
+     (40 . "#e78c45")
+     (60 . "#e7c547")
+     (80 . "#b9ca4a")
+     (100 . "#70c0b1")
+     (120 . "#7aa6da")
+     (140 . "#c397d8")
+     (160 . "#d54e53")
+     (180 . "#e78c45")
+     (200 . "#e7c547")
+     (220 . "#b9ca4a")
+     (240 . "#70c0b1")
+     (260 . "#7aa6da")
+     (280 . "#c397d8")
+     (300 . "#d54e53")
+     (320 . "#e78c45")
+     (340 . "#e7c547")
+     (360 . "#b9ca4a")))
+ '(vc-annotate-very-old-color nil)
+ '(window-divider-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

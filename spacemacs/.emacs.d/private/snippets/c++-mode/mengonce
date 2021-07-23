@@ -10,10 +10,10 @@ namespace ${2:EU} {
 
 $0
 
-${3:#include "`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`_inline.h"}
-
 } // namespace $2
 } // namespace ME
 } // namespace ECN
+
+${3:#include "`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`_inline.h"}
 
 #endif /* $1 */
